@@ -82,10 +82,10 @@ class RNADBMobileVisitor(reactContext: ReactApplicationContext) : ReactContextBa
     fun setCustomerIDs(input: ReadableArray) {
         for (i in 0..input.size() - 1) {
             val map = input.getMap(i)
-            val idType = map.getString("idType")
-            val identifier = map.getString("id")
-            val authStateStr = map.getString("authState")
-            val state = authenticationStateFromString(authStateStr)
+            val idType = map?.getString("idType")
+            val identifier = map?.getString("id")
+            val authStateStr = map?.getString("authState")
+            val state = authStateStr?.let { authenticationStateFromString(it) }
             Visitor.syncIdentifier(idType, identifier, state)
         }
     }
